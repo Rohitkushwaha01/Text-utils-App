@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
+import Footer from "./components/Footer";
 
 function App() {
-  const [mode, setmode] = useState('light');
-
+  const [mode, setmode] = useState('dark');
+  
   const toggleMode = ()=>{
     if(mode === 'light'){
       setmode('dark');
@@ -14,7 +15,7 @@ function App() {
     else{
       setmode('light');
       document.body.style.backgroundColor = "white";
-      document.body.style.color = "#343a40";
+      document.body.style.color = "black";
     }
   }
 
@@ -22,6 +23,7 @@ function App() {
     <div>
       <Navbar title="TextUtils" mode={mode} toggle={toggleMode}></Navbar>
       <TextForm heading="Enter your Text to Analyze below"></TextForm>
+      <Footer></Footer>
     </div>
   );
 }

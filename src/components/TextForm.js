@@ -27,35 +27,47 @@ export default function TextForm(props) {
     setText(remove)
   }
 
+  const handleSpaceClick = function(e){
+    let removeSpace = text.split(' ').filter(item => item !== '').join(' ');
+    setText(removeSpace)
+  }
+
+  const handleEmailClick = function(e){
+    let email = text.split(' ').filter(item => item.endsWith('@gmail.com')).join(' ');
+    if(email === "") setText("No email found")
+    else  setText(email)
+  }
+
   const handleOnChange = function (e) {
     setText(e.target.value)
-  };
-
-  const handleOnFocus = function (e) {
-    setText("") // On focus textarea should be empty
   };
 
   return (
     <>
     <div className="mb-3 container mt-5">
       <label htmlFor="mybox" className="form-label h3">{props.heading}</label>
-      <textarea className="form-control" id="mybox" rows="10" value={text} onChange={handleOnChange}
-      onClick={handleOnFocus}></textarea>
-      <div className="my-2">
-        <button className="btn btn-primary m-2" onClick={handleUpperClick}>
+      <textarea className="form-control" id="mybox" rows="10" value={text} onChange={handleOnChange}></textarea>
+      <div className="my-2 d-flex flex-wrap">
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleUpperClick}>
             Convert to Uppercase
         </button>
-        <button className="btn btn-primary m-2" onClick={handleLowerClick}>
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleLowerClick}>
             Convert to LowerCase
         </button>
-        <button className="btn btn-primary m-2" onClick={handleClearClick}>
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleClearClick}>
             Clear Textarea
         </button>
-        <button className="btn btn-primary m-2" onClick={handleJoinClick}>
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleJoinClick}>
             Join all Text
         </button>
-        <button className="btn btn-primary m-2" onClick={handleRemoveClick}>
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleRemoveClick}>
             Remove "-"
+        </button>
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleSpaceClick}>
+            Remove doubleSpace
+        </button>
+        <button className="btn btn-primary m-2 flex-grow-1" onClick={handleEmailClick}>
+            Extract Email
         </button>
       </div>
     </div>
@@ -63,7 +75,7 @@ export default function TextForm(props) {
         <h3>Your text Summary</h3>
         <p>{text.split(" ").length} words, {text.length} character, {0.008 * text.split(" ").length} Minutes need to read</p>
         <h3>Preview</h3>
-        <p>{text.length>0?text:"Enter Something to Preview"}</p>
+        <p className="p-3 border border-info rounded fw-bold">{text.length>0?text:"Enter Something to Preview"}</p>
     </div>
     </>
   )
