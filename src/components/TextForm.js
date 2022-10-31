@@ -58,7 +58,7 @@ export default function TextForm(props) {
             Clear Textarea
         </button>
         <button className="btn btn-primary m-2 flex-grow-1" onClick={handleJoinClick}>
-            Join all Text
+            Join all Text "-"
         </button>
         <button className="btn btn-primary m-2 flex-grow-1" onClick={handleRemoveClick}>
             Remove "-"
@@ -73,7 +73,7 @@ export default function TextForm(props) {
     </div>
     <div className="container my-2">
         <h3>Your text Summary</h3>
-        <p>{text.split(" ").length} words, {text.length} character, {0.008 * text.split(" ").length} Minutes need to read</p>
+        <p>{text.split(" ").length} words, {text.length} character (including space), {text.replaceAll(' ', '').length} character (excluding space), {0.008 * text.split(" ").length} Minutes need to read</p>
         <h3>Preview</h3>
         <p className="p-3 border border-info rounded fw-bold">{text.length>0?text:"Enter Something to Preview"}</p>
     </div>
